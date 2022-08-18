@@ -36,8 +36,8 @@ export const CustomDivider: FC<Props> = ({ label, description }) => {
 				>
 					<Box 
 						sx={{ 
-							borderBottom: theme => `1px solid ${ theme.palette.text.primary }`, 
-							borderTop: theme => `1px solid ${ theme.palette.text.primary }`, 
+							borderBottom: theme => `2px solid ${ theme.palette.text.primary }`,
+							mb: '1px',
 							width: { xs: '50%', md: '20%'}, mr: 2 
 						}} 
 					/>

@@ -1,9 +1,11 @@
+import Image from 'next/image'
 import { NextPage } from 'next'
 import { Box, Container, Typography } from '@mui/material'
 
 /*  */
 import { MainLayout, SEO } from '../layouts'
-import { AboutMe, CustomDivider, MainPresentation, WhatIDo } from '../components'
+import { AboutMe, CustomDivider, MainPresentation, Skills, WhatIDo, WorkExperience } from '../components'
+
 
 
 interface Props {
@@ -23,17 +25,22 @@ const Home: NextPage<Props> = ({ }) => {
 
             {/* ___ contenido ___ */}
             <MainLayout>
-                
                 <MainPresentation />
                 <AboutMe />
                 <WhatIDo />
+                <WorkExperience />
+                <Skills />
+
                 <Box
+                    component='section'
                     sx={{
                         backgroundColor: 'background.paper',
                         py: '100px'
                     }}
                 >
-                    hola mundo
+                    <Container>
+                        <CustomDivider label='Portafolio' description='Mis proyectos' />
+                    </Container>
                 </Box>
             </MainLayout>
         </>

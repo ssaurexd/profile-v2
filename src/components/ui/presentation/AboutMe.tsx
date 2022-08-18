@@ -10,6 +10,7 @@ export const AboutMe: FC<Props> = () => {
 
 	return (
 		<Box
+			component='section'
 			sx={{
 				backgroundColor: 'background.paper',
 				py: '100px'
@@ -25,9 +26,6 @@ export const AboutMe: FC<Props> = () => {
 				<CustomDivider description='Hola a todos' label='Un poco de mi' />
 
 				<Typography
-					sx={{
-						maxWidth: '700px'
-					}}
 					fontSize='large'
 					color='textSecondary'
 				>

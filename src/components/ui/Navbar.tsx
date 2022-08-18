@@ -1,6 +1,6 @@
 import { useState, MouseEvent, cloneElement, FC } from 'react'
 import Link from 'next/link'
-import { Box, Container, Typography, useScrollTrigger, Menu, MenuItem, Link as MuiLink } from '@mui/material'
+import { Box, Container, Typography, useScrollTrigger, Menu, MenuItem, Link as MuiLink, List, ListItem } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
@@ -47,7 +47,7 @@ export const Navbar: FC<Props> = ( ) => {
         <ElevationScroll >
             <AppBar >
                 <Container>
-                    <Toolbar disableGutters>
+                    <Toolbar disableGutters component='nav'>
 						{/* Desktop */}
                         <Link href='/' passHref>
                             <Typography
@@ -67,42 +67,42 @@ export const Navbar: FC<Props> = ( ) => {
                                 ssaurexd
                             </Typography>
                         </Link>
-						<Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', alignItems: 'center' }}>
+						<List sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', alignItems: 'center', gap: 3 }}>
                             { pages.map(( page ) => (
-								<Link
-									key={ page.label }
-									href={ page.to }
-									passHref
-								>
-									<MuiLink
-										sx={{ 
-											display: 'inline-block',
-											textDecoration: 'none',
-											mr: 3,
-											position: 'relative',
-											overflow: 'hidden',
-											'&::after' : {
-												content: `''`,
-												position: 'absolute',
-												bottom: '0',
-												left: '-100%',
-												width: '60%',
-												height: '2px',
-												background: '#00c176',
-												transition: 'left 400ms',
-											},
-											'&:hover::after': {
-												left: '0'
-											}
-										}}
-									>
-										<Typography color='textSecondary'  >
-											{ page.label }
-										</Typography>
-									</MuiLink>   
-								</Link>
+                                <ListItem key={ page.label } sx={{ p: 0, width: 'auto' }} >
+                                    <Link
+                                        href={ page.to }
+                                        passHref
+                                    >
+                                        <MuiLink
+                                            sx={{ 
+                                                display: 'inline-block',
+                                                textDecoration: 'none',
+                                                position: 'relative',
+                                                overflow: 'hidden',
+                                                '&::after' : {
+                                                    content: `''`,
+                                                    position: 'absolute',
+                                                    bottom: '0',
+                                                    left: '-100%',
+                                                    width: '60%',
+                                                    height: '2px',
+                                                    background: theme => theme.palette.primary.main,
+                                                    transition: 'left 400ms',
+                                                },
+                                                '&:hover::after': {
+                                                    left: '0'
+                                                }
+                                            }}
+                                        >
+                                            <Typography color='textSecondary'  >
+                                                { page.label }
+                                            </Typography>
+                                        </MuiLink>   
+                                    </Link>
+                                </ListItem>
                             ))}
-                        </Box>
+                        </List>
 
 						{/* Mobile */}
                         <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' }, color: theme => theme.palette.text.secondary }}>
@@ -176,10 +176,10 @@ export const Navbar: FC<Props> = ( ) => {
 									display: 'block',
 									textDecoration: 'none',
 									mr: { xs: 1, md: 2 } ,
-									color: 'rgba(255, 255, 255, 0.7)',
+									color: theme => theme.palette.text.secondary,
                                     transition: 'all ease 400ms',
 									'&:hover': {
-										color: '#00c176'
+										color: theme => theme.palette.primary.main
 									}
 								}}
 								href='https://github.com/ssaurexd'
@@ -194,10 +194,10 @@ export const Navbar: FC<Props> = ( ) => {
 									display: 'block',
 									textDecoration: 'none',
 									mr: { xs: 1, md: 2 } ,
-									color: 'rgba(255, 255, 255, 0.7)',
+									color: theme => theme.palette.text.secondary,
                                     transition: 'all ease 400ms',
 									'&:hover': {
-										color: '#00c176'
+										color: theme => theme.palette.primary.main
 									}
 								}}
 								href='https://www.linkedin.com/in/aure-sand-49a77b1b7/'

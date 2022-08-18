@@ -11,8 +11,9 @@ export const MainPresentation: FC<Props> = () => {
 
 	return (
 		<Box
+			component='section'
 			sx={{
-				minHeight: '100vh',
+				minHeight: '680px',
 				height: '100vh',
 				position: 'relative',
 				pt: { xs: '62px', md: '0' }

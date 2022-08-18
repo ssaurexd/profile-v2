@@ -1,12 +1,15 @@
 import { FC } from 'react'
-import { Box } from '@mui/material'
+import { useRouter } from 'next/router'
 import Image from 'next/image'
+import { Box } from '@mui/material'
 
 
 interface Props {
 	
 }
 export const Avatar: FC<Props> = () => {
+
+	const router = useRouter()
 
 	return (
 		<Box
@@ -39,11 +42,13 @@ export const Avatar: FC<Props> = () => {
 				<Image 
 					src='https://res.cloudinary.com/ssaurexd/image/upload/v1660758877/profile/me_transparent_ryhx7i.png'
 					objectFit='contain'
+					priority
 					alt='Foto de Aure'
 					layout='fill'
 					style={{
-						filter: 'grayscale(30%) brightness(90%) drop-shadow(5px 5px 5px #222)',
+						filter: 'grayscale(10%) brightness(90%) drop-shadow(5px 5px 5px #222)',
 					}}
+					onDoubleClick={ () => router.push( '/login' ) }
 				/>
 			</Box>
 		</Box>
