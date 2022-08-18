@@ -1,2 +1,6 @@
 export * from './ui/Navbar'
-export * from './ui/Avatar'
+export * from './ui/presentation/Avatar'
+export * from './ui/presentation/MainPresentation'
+export * from './ui/presentation/AboutMe'
+export * from './ui/presentation/WhatIDo'
+export * from './ui/CustomDivider'

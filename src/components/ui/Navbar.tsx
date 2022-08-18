@@ -105,7 +105,7 @@ export const Navbar: FC<Props> = ( ) => {
                         </Box>
 
 						{/* Mobile */}
-                        <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' } }}>
+                        <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' }, color: theme => theme.palette.text.secondary }}>
                             <IconButton
                                 size='large'
                                 aria-label='account of current user'
@@ -132,6 +132,7 @@ export const Navbar: FC<Props> = ( ) => {
                                 onClose={ handleCloseNavMenu }
                                 sx={{
                                     display: { xs: 'block', md: 'none' },
+                                    color: theme => theme.palette.text.primary
                                 }}
                             >
                             { pages.map(( page ) => (

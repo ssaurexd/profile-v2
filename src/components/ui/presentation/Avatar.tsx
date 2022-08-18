@@ -42,7 +42,7 @@ export const Avatar: FC<Props> = () => {
 					alt='Foto de Aure'
 					layout='fill'
 					style={{
-						filter: 'grayscale(30%) brightness(90%)',
+						filter: 'grayscale(30%) brightness(90%) drop-shadow(5px 5px 5px #222)',
 					}}
 				/>
 			</Box>
