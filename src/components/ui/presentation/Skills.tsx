@@ -168,6 +168,17 @@ export const Skills: FC<Props> = () => {
 						</Box>
 						<Typography variant='caption' fontSize='large' color='textSecondary' textAlign='center'>Sass</Typography>
 					</Box>
+					<Box sx={ imgContainerStyle }>    
+						<Box sx={ imageStyle } >
+							<Image 
+								src='/images/nextjs_144.png'
+								alt='CSS3'
+								layout='fill'
+								objectFit='contain'
+							/>
+						</Box>
+						<Typography variant='caption' fontSize='large' color='textSecondary' textAlign='center'>NextJS</Typography>
+					</Box>
 				</Box>
 			</Container>
 		</Box>

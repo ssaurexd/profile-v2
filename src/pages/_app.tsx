@@ -1,4 +1,5 @@
 
+import '../styles/index.scss'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { SessionProvider } from 'next-auth/react'
