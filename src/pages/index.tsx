@@ -60,11 +60,11 @@ const Home: NextPage<Props> = ({ lastesProjects }) => {
 
 export const getStaticProps: GetStaticProps = async ( ctx ) => {
 
-    const { data: { projects } } = await api.post<{ projects: IProject[] }>( '/project/last-three' )
+    /* const { data: { projects } } = await api.post<{ projects: IProject[] }>( '/project/last-three' ) */
 
     return {
         props: {
-            lastesProjects: projects
+            lastesProjects: []
         }
     }
 }
