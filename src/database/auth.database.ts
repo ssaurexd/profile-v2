@@ -14,7 +14,7 @@ export const sigInWithOAuth = async ( email: string, name: string ) => {
 
 		if( user ) {
 
-			const token = jwt.sign({ uid: user._id }, process.env.JWT_SEED!, { expiresIn: '30d' } )
+			const token = jwt.sign({ uid: user._id }, process.env.JWT_SEED || '', { expiresIn: '30d' } )
 			
 			await db.disconnect()
 			return {
@@ -31,7 +31,7 @@ export const sigInWithOAuth = async ( email: string, name: string ) => {
 			name,
 			password: '@'
 		})
-		const token = jwt.sign({ uid: newUser._id }, process.env.JWT_SEED!, { expiresIn: '30d' } )
+		const token = jwt.sign({ uid: newUser._id }, process.env.JWT_SEED || '', { expiresIn: '30d' } )
 		
 		await db.disconnect()
 		return {

@@ -37,7 +37,7 @@ const userSchema = new Schema<IUserBack, UserModel, IUserMethods>({
 
 /* Quitar el password del documento */
 userSchema.set( 'toJSON', {
-	transform(doc, ret, options) {
+	transform( doc, ret ) {
 		delete ret['password']
 		delete ret['updatedAt']
 		delete ret['__v']
