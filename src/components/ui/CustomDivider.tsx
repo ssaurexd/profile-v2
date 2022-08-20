@@ -45,7 +45,7 @@ export const CustomDivider: FC<Props> = ({ label, description }) => {
 				<Typography 
 					fontWeight={ 600 } 
 					variant='subtitle1' 
-					color='white' 
+					color='textPrimary' 
 					fontSize='large'
 					display='flex'
 					justifyContent='flex-start'

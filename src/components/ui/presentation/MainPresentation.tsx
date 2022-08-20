@@ -51,7 +51,7 @@ export const MainPresentation: FC<Props> = () => {
 							<Typography color='primary' fontWeight='500' marginBottom={{ xs: 1, md: 2 }} >Hola, soy</Typography>
 							<Typography 
 								fontFamily='Orbitron' 
-								color='white' 
+								color='textPrimary' 
 								fontWeight='700' 
 								component='h1' 
 								variant='h2' 

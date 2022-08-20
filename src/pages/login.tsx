@@ -1,15 +1,12 @@
 import { NextPage, GetServerSideProps } from 'next'
-import { getSession, signIn, getProviders } from 'next-auth/react'
+import { getSession, signIn } from 'next-auth/react'
 import { Button } from '@mui/material'
-import { useRouter } from 'next/router'
 
 
 interface Props {
 	
 }
 const LoginPage: NextPage<Props> = () => {
-
-	const router = useRouter()
 
 	/* functions */
 	const onSigninWithGoogle =  async (  ) => {

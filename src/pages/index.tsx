@@ -1,17 +1,25 @@
-import Image from 'next/image'
-import { NextPage } from 'next'
-import { Box, Container, Typography } from '@mui/material'
-
+import { NextPage, GetStaticProps } from 'next'
+/*  */
+import { IProject } from '../interfaces'
+import { api } from '../config'
 /*  */
 import { MainLayout, SEO } from '../layouts'
-import { AboutMe, CustomDivider, MainPresentation, Skills, WhatIDo, WorkExperience } from '../components'
-
+import { 
+    AboutMe, 
+    Contact,
+    MainPresentation,
+    ProjectsList, 
+    Skills, 
+    WhatIDo, 
+    WorkExperience 
+} from '../components'
+import Phrase from '../components/ui/presentation/Phrase'
 
 
 interface Props {
-    
+    lastesProjects: IProject[]
 }
-const Home: NextPage<Props> = ({ }) => {
+const Home: NextPage<Props> = ({ lastesProjects }) => {
 
     return (
         <>
@@ -29,22 +37,24 @@ const Home: NextPage<Props> = ({ }) => {
                 <AboutMe />
                 <WhatIDo />
                 <WorkExperience />
+                <Phrase />
+                <ProjectsList lastesProjects={ lastesProjects } />
                 <Skills />
-
-                <Box
-                    component='section'
-                    sx={{
-                        backgroundColor: 'background.paper',
-                        py: '100px'
-                    }}
-                >
-                    <Container>
-                        <CustomDivider label='Portafolio' description='Mis proyectos' />
-                    </Container>
-                </Box>
+                <Contact />
             </MainLayout>
         </>
     )
+}
+
+export const getStaticProps: GetStaticProps = async ( ctx ) => {
+
+    const { data: { projects } } = await api.post<{ projects: IProject[] }>( '/project/last-three' )
+
+    return {
+        props: {
+            lastesProjects: projects
+        }
+    }
 }
 
 export default Home

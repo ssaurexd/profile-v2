@@ -1,4 +1,5 @@
 
+import '../styles/index.scss'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'
 import { SessionProvider } from 'next-auth/react'
@@ -9,7 +10,7 @@ import { AuthProvider } from '../contexts'
 
 const App = ({ Component, pageProps }: AppProps) => {
 
-  	return (
+	return (
 		<SessionProvider>
 			<Provider store={ store } >
 				<AuthProvider>

@@ -17,7 +17,7 @@ export default NextAuth({
 				},
 				password: { label: 'Password', type: 'password' },
 			},
-			async authorize( credentials, req ) {
+			async authorize( credentials ) {
 				
 				try {
 					
@@ -61,7 +61,7 @@ export default NextAuth({
 
 			return token
 		},
-		session: async ({ session, token, user }) => {
+		session: async ({ session, token }) => {
 
 			session.accessToken = token.accessToken
 			session.user = token.user as any

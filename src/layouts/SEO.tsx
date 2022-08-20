@@ -33,6 +33,9 @@ export const SEO: FC<Props> = ( props ) => {
 
 	return (
 		<Head>
+			{/* Extra */}
+			{ keywords && <meta name="keywords" content={ keywords.join( ' ' ) } /> }
+			<title>{ title }</title>
 			<meta name='robots' content='index, follow' />
 			<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 			<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -51,9 +54,6 @@ export const SEO: FC<Props> = ( props ) => {
 			<meta property="twitter:description" content={ twitterDesc ? twitterDesc : description } />
 			<meta property="twitter:image" content={ twitterUrlImage ? twitterUrlImage : urlImage } />
 			<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-			{/* Extra */}
-			{ keywords && <meta name="keywords" content={ keywords.join( ' ' ) } /> }
-			<title>{ title }</title>
 		</Head>
 	)
 }

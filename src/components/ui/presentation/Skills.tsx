@@ -13,7 +13,11 @@ const imgContainerStyle = {
     justifyContent: 'center',
     alignItems: 'center'
 }
-const imageStyle = { position: 'relative', width: '80px', height: '80px' }
+const imageStyle = { 
+	position: 'relative', 
+	width: '80px', 
+	height: '80px'
+}
 interface Props {
 	
 }
@@ -167,6 +171,17 @@ export const Skills: FC<Props> = () => {
 							/>
 						</Box>
 						<Typography variant='caption' fontSize='large' color='textSecondary' textAlign='center'>Sass</Typography>
+					</Box>
+					<Box sx={ imgContainerStyle }>    
+						<Box sx={ imageStyle } >
+							<Image 
+								src='/images/nextjs_144.png'
+								alt='CSS3'
+								layout='fill'
+								objectFit='contain'
+							/>
+						</Box>
+						<Typography variant='caption' fontSize='large' color='textSecondary' textAlign='center'>NextJS</Typography>
 					</Box>
 				</Box>
 			</Container>

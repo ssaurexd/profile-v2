@@ -1,17 +1,32 @@
-import { useState, MouseEvent, cloneElement, FC } from 'react'
+import { cloneElement, FC, ReactElement } from 'react'
 import Link from 'next/link'
-import { Box, Container, Typography, useScrollTrigger, Menu, MenuItem, Link as MuiLink, List, ListItem } from '@mui/material'
+import { 
+    Box, 
+    Container, 
+    Typography, 
+    useScrollTrigger,
+    Link as MuiLink, 
+    List, 
+    ListItem, 
+    ListItemButton,
+    ListItemText,
+    Drawer
+} from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub'
+import LinkedInIcon from '@mui/icons-material/LinkedIn'
+/*  */
+import { useAppDispatch, useAppSelector } from '../../hooks'
+import { appToggleMenu } from '../../redux'
+import { ToggleTheme } from './ToggleTheme'
 
 
 interface ElevationScrollProps {
     window?: () => Window
-    children: React.ReactElement
+    children: ReactElement
 }
 const ElevationScroll = ( props: ElevationScrollProps ) => {
 
@@ -24,7 +39,7 @@ const ElevationScroll = ( props: ElevationScrollProps ) => {
   
     return cloneElement( children, {
         elevation: trigger ? 3 : 0,
-        color: trigger ? 'primary' : 'transparent'
+        color: trigger ? 'default' : 'transparent'
     })
 }
 
@@ -37,11 +52,8 @@ const pages = [
 interface Props {}
 export const Navbar: FC<Props> = ( ) => {
 
-    const [ anchorElNav, setAnchorElNav ] = useState<null | HTMLElement>( null )
-
-    /* functions */
-    const handleOpenNavMenu = ( event: MouseEvent<HTMLElement> ) => setAnchorElNav( event.currentTarget )
-    const handleCloseNavMenu = () => setAnchorElNav( null )
+    const { isMenuOpen } = useAppSelector( state => state.app )
+    const dispatch = useAppDispatch()
 
     return (
         <ElevationScroll >
@@ -111,36 +123,11 @@ export const Navbar: FC<Props> = ( ) => {
                                 aria-label='account of current user'
                                 aria-controls='menu-appbar'
                                 aria-haspopup='true'
-                                onClick={ handleOpenNavMenu }
+                                onClick={ () => dispatch( appToggleMenu() ) }
                                 color='inherit'
                             >
-                            	<MenuIcon />
+                                <MenuIcon />
                             </IconButton>
-                            <Menu
-                                id='menu-appbar'
-                                anchorEl={ anchorElNav }
-                                anchorOrigin={{
-                                    vertical: 'bottom',
-                                    horizontal: 'left',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'left',
-                                }}
-                                open={ Boolean(anchorElNav) }
-                                onClose={ handleCloseNavMenu }
-                                sx={{
-                                    display: { xs: 'block', md: 'none' },
-                                    color: theme => theme.palette.text.primary
-                                }}
-                            >
-                            { pages.map(( page ) => (
-                                <MenuItem key={ page.label } onClick={ handleCloseNavMenu }>
-                                	<Typography textAlign='center'>{ page.label }</Typography>
-                                </MenuItem>
-                            )) }
-                            </Menu>
                         </Box>
                         <Link href='/' passHref>
                             <Typography
@@ -168,7 +155,7 @@ export const Navbar: FC<Props> = ( ) => {
 								flexGrow: 0, 
 								display: { xs: 'flex' }, 
 								justifyContent: 'flex-end', 
-								alignItems: 'center' 
+								alignItems: 'center'
 							}}
 						>
 							<MuiLink
@@ -206,10 +193,37 @@ export const Navbar: FC<Props> = ( ) => {
 								<Typography color='inherit' display='flex' alignItems='center' >
 									<LinkedInIcon color='inherit' sx={{ fontSize: '1.8rem' }} />
 								</Typography>
-							</MuiLink>   
+							</MuiLink>
+                            <ToggleTheme />
                         </Box>
                     </Toolbar>
                 </Container>
+                <Drawer
+                    open={ isMenuOpen }
+                    onClose={ () => dispatch( appToggleMenu() ) }
+                >
+                    <Toolbar
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'flex-end'
+                        }}
+                    >
+                        <ToggleTheme />
+                    </Toolbar>
+                    <Box
+                        sx={{ width: 250 }}
+                    >
+                        <List >
+                            { pages.map(( page ) => (
+                                <ListItem key={ page.label } disablePadding>
+                                    <ListItemButton>
+                                        <ListItemText primary={ page.label } />
+                                    </ListItemButton>
+                                </ListItem>
+                            ))}
+                        </List>
+                    </Box>
+                </Drawer>
             </AppBar>
         </ElevationScroll>
     )
