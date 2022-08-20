@@ -1,5 +1,6 @@
-import { FC, ReactElement } from 'react'
-import { Navbar } from '../components'
+import { FC } from 'react'
+/*  */
+import { Footer, Navbar } from '../components'
 import { ThemeLayout } from './ThemeLayout'
 
 
@@ -13,6 +14,7 @@ export const MainLayout: FC<Props> = ({ children }) => {
 			<>
 				<Navbar />
 				{ children }
+				<Footer />
 			</>
 		</ThemeLayout>
 	)

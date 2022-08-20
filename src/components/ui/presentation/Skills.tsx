@@ -13,7 +13,11 @@ const imgContainerStyle = {
     justifyContent: 'center',
     alignItems: 'center'
 }
-const imageStyle = { position: 'relative', width: '80px', height: '80px' }
+const imageStyle = { 
+	position: 'relative', 
+	width: '80px', 
+	height: '80px'
+}
 interface Props {
 	
 }

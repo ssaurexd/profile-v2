@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import { Box } from '@mui/material'
+import { Box, darken } from '@mui/material'
 
 
 interface Props {
@@ -24,7 +24,10 @@ export const Avatar: FC<Props> = () => {
 					width: '100%',
 					height: '100%',
 					borderRadius: '33% 67% 50% 50% / 51% 42% 58% 49% ',
-					background: 'rgb(31,60,49) linear-gradient(120deg, rgba(31,60,49,1) 0%, rgba(0,193,118,1) 100%, rgba(0,237,145,1) 100%)'
+					background: theme => `
+						${ darken( theme.palette.primary.main, 0.8 ) } 
+						linear-gradient(120deg, ${ darken( theme.palette.primary.main, 0.7 ) } 0%, 
+						${ theme.palette.primary.main } 100%, ${ theme.palette.primary.light } 100%)`
 				}}
 			/>
 			<Box

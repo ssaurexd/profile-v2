@@ -1,6 +1,4 @@
-import Image from 'next/image'
 import { NextPage, GetStaticProps } from 'next'
-import { Box, Container, Paper, Typography } from '@mui/material'
 /*  */
 import { IProject } from '../interfaces'
 import { api } from '../config'
@@ -8,14 +6,14 @@ import { api } from '../config'
 import { MainLayout, SEO } from '../layouts'
 import { 
     AboutMe, 
-    CustomDivider, 
-    MainPresentation, 
-    ProjectCard, 
+    Contact,
+    MainPresentation,
     ProjectsList, 
     Skills, 
     WhatIDo, 
     WorkExperience 
 } from '../components'
+import Phrase from '../components/ui/presentation/Phrase'
 
 
 interface Props {
@@ -39,20 +37,10 @@ const Home: NextPage<Props> = ({ lastesProjects }) => {
                 <AboutMe />
                 <WhatIDo />
                 <WorkExperience />
-                <Skills />
+                <Phrase />
                 <ProjectsList lastesProjects={ lastesProjects } />
-                <Box
-                    component='section'
-                    sx={{
-                        py: '100px'
-                    }}
-                >
-                    <Container  >
-                        <Paper elevation={ 0 } >
-                            hola mundo
-                        </Paper>
-                    </Container>
-                </Box>
+                <Skills />
+                <Contact />
             </MainLayout>
         </>
     )
