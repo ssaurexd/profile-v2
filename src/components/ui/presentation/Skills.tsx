@@ -25,6 +25,7 @@ export const Skills: FC<Props> = () => {
 
 	return (
 		<Box
+			id='Skills'
 			component='section'
 			sx={{
 				py: '100px'

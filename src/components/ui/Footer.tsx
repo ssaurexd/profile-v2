@@ -1,19 +1,15 @@
 import { FC } from 'react'
-import Link from 'next/link'
 import { Box, Container, Divider, List, ListItem, Typography, Link as MuiLink } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import FacebookIcon from '@mui/icons-material/Facebook'
 import InstagramIcon from '@mui/icons-material/Instagram'
+import { ScrollLink } from './link/ScrollLink'
+/*  */
+import { pages } from '../../config'
 
 
 const date = new Date()
-const pages = [
-	{ label: 'Proyectos', to: '#' },
-	{ label: 'Experiencia', to: '#' },
-	{ label: 'Habilidades', to: '#' },
-	{ label: 'Acerca de mi', to: '#' },
-]
 interface Props {
 	
 }
@@ -41,37 +37,10 @@ export const Footer: FC<Props> = () => {
 						<List sx={{ flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 3, flexWrap: 'wrap' }}>
 							{ pages.map(( page ) => (
                                 <ListItem key={ page.label } sx={{ p: 0, width: 'auto', mb: 1 }} >
-                                    <Link
-                                        href={ page.to }
-                                        passHref
-                                    >
-                                        <MuiLink
-                                            sx={{ 
-                                                display: 'inline-block',
-                                                textDecoration: 'none',
-                                                position: 'relative',
-                                                overflow: 'hidden',
-												textAlign: 'center',
-                                                '&::after' : {
-                                                    content: `''`,
-                                                    position: 'absolute',
-                                                    bottom: '0',
-                                                    left: '-100%',
-                                                    width: '60%',
-                                                    height: '2px',
-                                                    background: theme => theme.palette.primary.main,
-                                                    transition: 'left 400ms',
-                                                },
-                                                '&:hover::after': {
-                                                    left: '0'
-                                                }
-                                            }}
-                                        >
-                                            <Typography color='textSecondary'  >
-                                                { page.label }
-                                            </Typography>
-                                        </MuiLink>   
-                                    </Link>
+                                    <ScrollLink  
+										label={ page.label }
+                                        to={ page.to }
+									/>
                                 </ListItem>
                             ))}
 						</List>

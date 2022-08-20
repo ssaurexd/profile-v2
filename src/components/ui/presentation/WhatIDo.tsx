@@ -14,6 +14,7 @@ export const WhatIDo: FC<Props> = () => {
 
 	return (
 		<Box
+			id='WhatIDo'
 			component='section'
 			sx={{
 				py: '100px'

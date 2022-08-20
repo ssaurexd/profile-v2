@@ -13,6 +13,21 @@ export default class MyDocument extends Document {
 					{/* Orbitron */}
 					<link href='https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap' rel='stylesheet' />
 					<meta httpEquiv='Content-Type' content='text/html; charset=utf-8' />
+					{/* <!-- Google tag (gtag.js) --> */}
+					<script
+						async
+						src={`https://www.googletagmanager.com/gtag/js?id=G-JRBEW042S0`}
+					/>
+					<script
+						dangerouslySetInnerHTML={{
+							__html: `
+								window.dataLayer = window.dataLayer || [];
+								function gtag(){dataLayer.push(arguments);}
+								gtag('js', new Date());
+								gtag('config', 'G-JRBEW042S0');
+							`,
+						}}
+					/>
 				</Head>
 				
 				<body>

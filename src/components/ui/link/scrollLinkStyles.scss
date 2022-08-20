@@ -1,0 +1,37 @@
+.scrollLink {
+	display: inline-block;
+	text-decoration: none;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: -100%;
+		width: 60%;
+		height: 2px;
+		background: var(--bgScrollLink);
+		transition: left 400ms;
+	};
+	&:hover::after {
+		left: 0
+	}
+}
+.activeScrollLink {
+	display: inline-block;
+	text-decoration: none;
+	position: relative;
+	overflow: hidden;
+	cursor: pointer;
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 60%;
+		height: 2px;
+		background: var(--bgScrollLink);
+		transition: left 400ms;
+	};
+}
