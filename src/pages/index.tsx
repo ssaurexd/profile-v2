@@ -14,6 +14,7 @@ import {
     WorkExperience 
 } from '../components'
 import Phrase from '../components/ui/presentation/Phrase'
+import { projectDB } from '../database'
 
 
 interface Props {
@@ -24,10 +25,10 @@ const Home: NextPage<Props> = ({ lastesProjects }) => {
     return (
         <>
             <SEO 
-                title='Portafolio - Aureliano Torres Sandoval'
-                description='Portaforlio de proyectos e información de contacto de Aureliano Torres Sandoval'
+                title='Aureliano Torres Sandoval'
+                description='Portafolio de proyectos e información de contacto de Aureliano Torres Sandoval'
                 keywords={['Aureliano', 'Torres', 'Sandoval', 'Portafolio', 'Proyectos' ]}
-                url='http://localhost:3000/'
+                url='https://ssaurexd.com/'
                 urlImage='https://res.cloudinary.com/ssaurexd/image/upload/v1660676943/profile/me_fb_mg81vp.webp'
             />
 
@@ -48,11 +49,11 @@ const Home: NextPage<Props> = ({ lastesProjects }) => {
 
 export const getStaticProps: GetStaticProps = async ( ctx ) => {
 
-    const { data: { projects } } = await api.post<{ projects: IProject[] }>( '/project/last-three' )
+    const lastesProjects = await projectDB.getLastThreeProjectes()
 
     return {
         props: {
-            lastesProjects: projects
+            lastesProjects
         }
     }
 }

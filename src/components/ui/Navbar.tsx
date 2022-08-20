@@ -19,9 +19,12 @@ import MenuIcon from '@mui/icons-material/Menu'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 /*  */
+import { pages } from '../../config'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { appToggleMenu } from '../../redux'
+import { appSetActiveMenu, appToggleMenu } from '../../redux'
+/*  */
 import { ToggleTheme } from './ToggleTheme'
+import { ScrollLink } from '../ui/link/ScrollLink'
 
 
 interface ElevationScrollProps {
@@ -43,17 +46,30 @@ const ElevationScroll = ( props: ElevationScrollProps ) => {
     })
 }
 
-const pages = [
-	{ label: 'Proyectos', to: '#' },
-	{ label: 'Experiencia', to: '#' },
-	{ label: 'Habilidades', to: '#' },
-	{ label: 'Acerca de mi', to: '#' }
-]
+const socialStyle = {
+    display: 'block',
+    textDecoration: 'none',
+    mr: { xs: 1, md: 2 } ,
+    color: (theme: any ) => theme.palette.text.secondary,
+    transition: 'all ease 400ms',
+    '&:hover': {
+        color: ( theme: any )=> theme.palette.primary.main
+    }
+}
 interface Props {}
 export const Navbar: FC<Props> = ( ) => {
 
-    const { isMenuOpen } = useAppSelector( state => state.app )
+    const { isMenuOpen, activeMenu } = useAppSelector( state => state.app )
     const dispatch = useAppDispatch()
+
+    /* function */
+    const onCloseMenu = () => dispatch( appToggleMenu( false ) )
+    const onOpenMenu = () => dispatch( appToggleMenu( true ) ) 
+    const setPage = ( to: string ) => {
+        
+        dispatch( appSetActiveMenu( to ) )
+        onCloseMenu()
+    }
 
     return (
         <ElevationScroll >
@@ -79,51 +95,39 @@ export const Navbar: FC<Props> = ( ) => {
                                 ssaurexd
                             </Typography>
                         </Link>
-						<List sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, justifyContent: 'center', alignItems: 'center', gap: 3 }}>
+						<List 
+                            sx={{ 
+                                flexGrow: 1, 
+                                display: { xs: 'none', md: 'flex' }, 
+                                justifyContent: 'center', 
+                                alignItems: 'center', 
+                                gap: 3 
+                            }}
+                        >
                             { pages.map(( page ) => (
                                 <ListItem key={ page.label } sx={{ p: 0, width: 'auto' }} >
-                                    <Link
-                                        href={ page.to }
-                                        passHref
-                                    >
-                                        <MuiLink
-                                            sx={{ 
-                                                display: 'inline-block',
-                                                textDecoration: 'none',
-                                                position: 'relative',
-                                                overflow: 'hidden',
-                                                '&::after' : {
-                                                    content: `''`,
-                                                    position: 'absolute',
-                                                    bottom: '0',
-                                                    left: '-100%',
-                                                    width: '60%',
-                                                    height: '2px',
-                                                    background: theme => theme.palette.primary.main,
-                                                    transition: 'left 400ms',
-                                                },
-                                                '&:hover::after': {
-                                                    left: '0'
-                                                }
-                                            }}
-                                        >
-                                            <Typography color='textSecondary'  >
-                                                { page.label }
-                                            </Typography>
-                                        </MuiLink>   
-                                    </Link>
+                                    <ScrollLink 
+                                        label={ page.label }
+                                        to={ page.to }
+                                    />  
                                 </ListItem>
                             ))}
                         </List>
 
 						{/* Mobile */}
-                        <Box sx={{ flexGrow: 0, display: { xs: 'flex', md: 'none' }, color: theme => theme.palette.text.secondary }}>
+                        <Box 
+                            sx={{ 
+                                flexGrow: 0, 
+                                display: { xs: 'flex', md: 'none' }, 
+                                color: theme => theme.palette.text.secondary 
+                            }}
+                        >
                             <IconButton
                                 size='large'
                                 aria-label='account of current user'
                                 aria-controls='menu-appbar'
                                 aria-haspopup='true'
-                                onClick={ () => dispatch( appToggleMenu() ) }
+                                onClick={ onOpenMenu }
                                 color='inherit'
                             >
                                 <MenuIcon />
@@ -159,16 +163,7 @@ export const Navbar: FC<Props> = ( ) => {
 							}}
 						>
 							<MuiLink
-								sx={{ 
-									display: 'block',
-									textDecoration: 'none',
-									mr: { xs: 1, md: 2 } ,
-									color: theme => theme.palette.text.secondary,
-                                    transition: 'all ease 400ms',
-									'&:hover': {
-										color: theme => theme.palette.primary.main
-									}
-								}}
+								sx={ socialStyle }
 								href='https://github.com/ssaurexd'
 								target='_blank'
 							>
@@ -177,16 +172,7 @@ export const Navbar: FC<Props> = ( ) => {
 								</Typography>
 							</MuiLink>   
 							<MuiLink
-								sx={{
-									display: 'block',
-									textDecoration: 'none',
-									mr: { xs: 1, md: 2 } ,
-									color: theme => theme.palette.text.secondary,
-                                    transition: 'all ease 400ms',
-									'&:hover': {
-										color: theme => theme.palette.primary.main
-									}
-								}}
+								sx={ socialStyle }
 								href='https://www.linkedin.com/in/aure-sand-49a77b1b7/'
 								target='_blank'
 							>
@@ -194,13 +180,18 @@ export const Navbar: FC<Props> = ( ) => {
 									<LinkedInIcon color='inherit' sx={{ fontSize: '1.8rem' }} />
 								</Typography>
 							</MuiLink>
-                            <ToggleTheme />
+                            <ToggleTheme 
+                                sx={{
+                                    color: theme => theme.palette.text.secondary,
+                                    display: { xs: 'none', md: 'flex' }
+                                }}
+                            />
                         </Box>
                     </Toolbar>
                 </Container>
                 <Drawer
                     open={ isMenuOpen }
-                    onClose={ () => dispatch( appToggleMenu() ) }
+                    onClose={ onCloseMenu }
                 >
                     <Toolbar
                         sx={{
@@ -216,8 +207,19 @@ export const Navbar: FC<Props> = ( ) => {
                         <List >
                             { pages.map(( page ) => (
                                 <ListItem key={ page.label } disablePadding>
-                                    <ListItemButton>
-                                        <ListItemText primary={ page.label } />
+                                    <ListItemButton
+                                        sx={{
+                                            borderRight: theme => activeMenu === page.to ? `4px solid ${ theme.palette.primary.main }` : 'none'
+                                        }}
+                                    >
+                                        <ListItemText>
+                                            <ScrollLink 
+                                                label={ page.label }
+                                                to={ page.to }
+                                                isMobile
+                                                onActiveLink={ () => setPage( page.to ) }
+                                            /> 
+                                        </ListItemText>
                                     </ListItemButton>
                                 </ListItem>
                             ))}

@@ -15,6 +15,7 @@ export const WorkExperience: FC<Props> = () => {
 
 	return (
 		<Box
+            id='WorkExperience'
             component='section'
 			sx={{
 				backgroundColor: 'background.paper',

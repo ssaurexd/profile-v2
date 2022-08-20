@@ -10,6 +10,7 @@ export const AboutMe: FC<Props> = () => {
 
 	return (
 		<Box
+			id='AboutMe'
 			component='section'
 			sx={{
 				backgroundColor: 'background.paper',

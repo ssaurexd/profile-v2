@@ -36,6 +36,7 @@ export const ProjectsList: FC<Props> = ({ lastesProjects }) => {
 
 	return (
 		<Box
+			id='ProjectsList'
 			component='section'
 			sx={{
 				backgroundColor: 'background.paper',

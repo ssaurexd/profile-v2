@@ -1,3 +1,4 @@
 export interface IApp {
-	isMenuOpen: boolean
+	isMenuOpen: boolean;
+	activeMenu: string
 }

@@ -4,18 +4,28 @@ import { IApp } from '../../interfaces'
 
 
 const initialState: IApp = {
-	isMenuOpen: false
+	isMenuOpen: false,
+	activeMenu: ''
 } 
 
 const appSlice = createSlice({
 	name: 'app',
 	initialState,
 	reducers: {
-		appToggleMenu: state => { state.isMenuOpen = !state.isMenuOpen }
+		appToggleMenu: ( state, { payload }: PayloadAction<boolean|undefined> ) => { 
+
+			if( payload ) state.isMenuOpen = payload
+			else state.isMenuOpen = !state.isMenuOpen 
+		},
+		appSetActiveMenu: ( state, { payload }: PayloadAction<string> ) => {
+
+			state.activeMenu = payload
+		}
 	}
 })
 
 export const {
-	appToggleMenu
+	appToggleMenu,
+	appSetActiveMenu
 } = appSlice.actions
 export const appReducer = appSlice.reducer
