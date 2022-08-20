@@ -22,4 +22,4 @@ export interface IProjectBack {
 }
 export interface IProjectMethods {
 }
-export type ProjectModel = Model<IProjectBack, {}, IProjectMethods, Document>
+export type ProjectModel = Model<IProjectBack, Record<string, unknown>, IProjectMethods, Document>

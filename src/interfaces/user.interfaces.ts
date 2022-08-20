@@ -25,4 +25,4 @@ export interface IUserMethods {
 	comparePassword: ( password: string ) => Promise<boolean>;
 	hashPassword: ( value: string ) => Promise<string>
 }
-export type UserModel = Model<IUserBack, {}, IUserMethods, {}, Document>
+export type UserModel = Model<IUserBack, Record<string, unknown>, IUserMethods, Record<string, unknown>, Document>
