@@ -8,3 +8,4 @@ export const pages = [
 	{ label: 'Habilidades', to: 'Skills' },
 	{ label: 'Acerca de mi', to: 'AboutMe' }
 ]
+export const drawerWidth = 260

@@ -23,7 +23,7 @@ export const ProjectsList: FC<Props> = ({ lastesProjects }) => {
 	const loadMoreProjects = async (  ) => {
 		
 		setIsLoading( true )
-		const { data: { data: moreProjects } } = await api.get<{ data: IProject[] }>( '/project', {
+		const { data: { data: moreProjects } } = await api.get<{ data: IProject[] }>( '/project/load-more', {
 			params: filters
 		})
 

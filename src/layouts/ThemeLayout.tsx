@@ -1,5 +1,5 @@
 import { FC, useMemo, useEffect } from 'react'
-import { ThemeProvider, CssBaseline, Theme as MuiTheme } from '@mui/material'
+import { ThemeProvider, CssBaseline, Theme as MuiTheme, GlobalStyles } from '@mui/material'
 /*  */
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { darkTheme, lightTheme } from '../config'
@@ -26,6 +26,28 @@ export const ThemeLayout: FC<Props> = ({ children }) => {
 	return (
 		<ThemeProvider theme={ theme }>	
 			<CssBaseline />
+			<GlobalStyles 
+				styles={{
+					body: {
+						'&::-webkit-scrollbar-track': {
+							background: 'transparent'
+						},
+						'&::-webkit-scrollbar-thumb': {
+							backgroundColor: theme.palette.action.disabled,
+							borderBottomLeftRadius: '10px',
+							borderBottomRightRadius: '10px',
+							borderTopRightRadius: '10px',
+							borderTopLeftRadius: '10px',
+							'&:hover': {
+								backgroundColor: theme.palette.text.secondary
+							}
+						},
+						'&::-webkit-scrollbar': {
+							width: '.5rem'
+						}
+					}
+				}}
+			/>
 			{ children }
 		</ThemeProvider>
 	)

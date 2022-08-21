@@ -19,16 +19,15 @@ const LoginPage: NextPage<Props> = () => {
 	)
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, query }) => {
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 	
 	const session = await getSession({ req })
-	const { p = '/' } = query
 
 	if( session ) {
 
 		return {
 			redirect: {
-				destination: `${ p }`,
+				destination: '/admin',
 				permanent: false
 			}
 		}
