@@ -1,20 +1,24 @@
+import { 
+	Box
+} from '@mui/material'
 import { NextPage, GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 /*  */
 import { IUser } from '../../interfaces'
 /*  */
-import { ThemeLayout } from '../../layouts'
+import { AdminLayout } from '../../layouts'
 
 
 interface Props {
-	
+
 }
-const Dashboard: NextPage<Props> = () => {
+const Dashboard: NextPage<Props> = ({  }) => {
 
 	return (
-		<ThemeLayout>
-			<div>Hola de nuevo</div>
-		</ThemeLayout>
+		<AdminLayout>
+			<Box sx={{ display: 'flex' }}>
+			</Box>
+		</AdminLayout>
 	)
 }
 

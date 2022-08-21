@@ -1,7 +1,6 @@
 import { NextPage, GetStaticProps } from 'next'
 /*  */
 import { IProject } from '../interfaces'
-import { api } from '../config'
 /*  */
 import { MainLayout, SEO } from '../layouts'
 import { 
@@ -47,7 +46,7 @@ const Home: NextPage<Props> = ({ lastesProjects }) => {
     )
 }
 
-export const getStaticProps: GetStaticProps = async ( ctx ) => {
+export const getStaticProps: GetStaticProps = async ( ) => {
 
     const lastesProjects = await projectDB.getLastThreeProjectes()
 
