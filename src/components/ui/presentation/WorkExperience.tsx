@@ -25,7 +25,7 @@ export const WorkExperience: FC<Props> = () => {
 			<Container>
 				<CustomDivider label='Como lo he llevado' description='Mi experiencia' />
 				<Typography color='textSecondary' fontSize='large' sx={{ mb: '100px' }}>
-					Desde mi vida como universitario logre adiquirir un poco de experiencia como hasta el momento donde cada día me esfuerzon en aprender más, ya sea aprendiendo con la experiencia de mis compañeros, aceptando su retroalimentación como siendo autodidacta.
+					Desde mi vida como universitario logre adquirir un poco de experiencia como hasta el momento donde cada día me esfuerzo en aprender más, ya sea aprendiendo con la experiencia de mis compañeros, aceptando su retroalimentación como tambien siendo autodidacta.
 				</Typography>
 				<MyExperience />
 			</Container>
@@ -83,7 +83,7 @@ const MyExperience = () => {
                         Participación: LiberApp
                     </Typography>
                     <Typography color='textSecondary'>
-                        Participacion en concurso de innovación, presentando el proyecto LiberApp ( aplicación movil que bascaba reducir el incremento de secuestros en la Ciudad de México haciendo uso de los sensores del telefono inteligente ) en el Evento Nacional Estudiatil de Innovación Tecnologica 2018.
+                        Participacion en concurso de innovación, presentando el proyecto LiberApp ( aplicación movil que buscaba reducir el incremento de secuestros en la Ciudad de México haciendo uso de los sensores del telefono inteligente ) en el Evento Nacional Estudiatil de Innovación Tecnologica 2018.
                     </Typography>
                 </TimelineContent>
             </TimelineItem>

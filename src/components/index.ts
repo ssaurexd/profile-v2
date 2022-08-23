@@ -11,6 +11,7 @@ export * from './ui/CustomDivider'
 export * from './ui/project/ProjectCard'
 export * from './ui/project/ProjectsList'
 export * from './ui/Footer'
+export * from './ui/MyDropZone'
 export * from './ui/ToggleTheme'
 export * from './ui/link/ScrollLink'
 

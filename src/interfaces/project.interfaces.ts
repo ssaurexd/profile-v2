@@ -7,6 +7,7 @@ export interface IProject {
 	image: string;
 	githubUrl?: string;
 	viewUrl?: string;
+	createdAt?: Date;
 	description: string;
 }
 

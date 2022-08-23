@@ -4,12 +4,12 @@ import { getSession } from 'next-auth/react'
 import { Box, IconButton, Paper } from '@mui/material'
 import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
+import Image from 'next/image'
+import Link from 'next/link'
 /*  */
 import { IProject, IUser } from '../../../interfaces'
 import { AdminLayout } from '../../../layouts'
 import { api } from '../../../config'
-import Image from 'next/image'
-import Link from 'next/link'
  
 const columns: GridColDef[] = [
 	{ 
@@ -71,7 +71,7 @@ const columns: GridColDef[] = [
 interface Props {
 	
 }
-const ListProjects: NextPage<Props> = ({}) => {
+const ListProjectsPage: NextPage<Props> = ({}) => {
 
 	const [ isLoading, setIsLoading ] = useState( true )
 	const [ rows, setRows ] = useState<GridRowsProp>( [] )
@@ -154,4 +154,4 @@ export const getServerSideProps: GetServerSideProps = async ({ req, query }) => 
 	}
 }
 
-export default ListProjects
+export default ListProjectsPage
