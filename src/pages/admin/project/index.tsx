@@ -20,8 +20,8 @@ const columns: GridColDef[] = [
 
 			return (
 				<Link href={`/admin/project/${ value }`} passHref >
-					<IconButton>
-						<EditIcon />
+					<IconButton color='inherit'>
+						<EditIcon color='inherit' />
 					</IconButton>
 				</Link>
 			)
@@ -113,6 +113,12 @@ const ListProjectsPage: NextPage<Props> = ({}) => {
 					rowsPerPageOptions={[ 15 ]}
 					disableSelectionOnClick
 					experimentalFeatures={{ newEditingApi: true }}
+					sx={{
+						color: theme => theme.palette.text.secondary,
+						'& .MuiDataGrid-columnHeader': {
+							color: theme => theme.palette.text.primary
+						}
+					}}
 				/>
 			</Paper>
 		</AdminLayout>
