@@ -46,7 +46,7 @@ export const ProjectCard: FC<Props> = ({ project: { description, image, title, g
 				alt={ title }
 				sx={{
 					width: '100%',
-					maxHeight: '182px',
+					height: '182px',
 					objectFit: 'cover'
 				}}
 			/>

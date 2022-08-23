@@ -26,6 +26,9 @@ GOOGLE_CLIENT_SECRET =
 
 # database url
 MONGO_URL = 
+
+# cloudinary 
+CLOUDINARY_URL =
 ```
 
 ## Start Server

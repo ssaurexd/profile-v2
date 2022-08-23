@@ -9,7 +9,7 @@ export let lightTheme = createTheme({
 			paper: '#fff'
 		},
 		primary: {
-			main: '#f44336'
+			main: '#009688'
 		}
 	}
 })

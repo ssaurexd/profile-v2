@@ -13,11 +13,14 @@ type Data = {
 const api = ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
 
 	switch ( req.method ) {
-		case 'POST':
-			return post( req, res )
-
 		case 'GET':
 			return get( req, res )
+
+		case 'PUT':
+			return put( req, res )
+
+		case 'DELETE':
+			return deleteProject( req, res )
 
 		default:
 			return res.status( 400 ).json({ msg: 'Not allowed method' })
@@ -26,16 +29,19 @@ const api = ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
 
 const get = async ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
 
+	const id = req.query.id as string
+
 	try {
 
 		await db.connect()
 
-		const projects = await Project.find({}).sort({ createdAt: -1 })
-
+		const project = await Project.findById( id )
+		
 		await db.disconnect()
-		return res.status( 201 ).json({
-			data: projects
-		})
+
+		if( !project ) return res.status( 201 ).json({ msg: 'No data' })
+
+		return res.status( 201 ).json({ project })
 	} catch ( error ) {
 		
 		console.log("🚀 ~ file: index.ts ~ line 47 ~ post ~ error", error)
@@ -44,8 +50,9 @@ const get = async ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
 	}
 }
 
-const post = async ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
+const put = async ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
 
+	const id = req.query.id as string
 	const {
 		description = '',
 		githubUrl = '',
@@ -58,18 +65,41 @@ const post = async ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
 
 		await db.connect()
 
-		const project = await Project.create({
-			description,
-			githubUrl,
-			title,
-			image,
-			viewUrl
-		})
+		const project = await Project.findByIdAndUpdate( id, {
+			$set: {
+				description,
+				githubUrl,
+				title,
+				image,
+				viewUrl
+			}
+		}, { new: true })
 
 		await db.disconnect()
 		return res.status( 201 ).json({
-			msg: 'Producto Creado',
+			msg: 'Producto actualizado',
 			project
+		})
+	} catch ( error ) {
+		
+		console.log("🚀 ~ file: index.ts ~ line 47 ~ post ~ error", error)
+		await db.disconnect()
+		return res.status( 500 ).json({ msg: 'Oops! Algo salio mal!' })
+	}
+}
+
+const deleteProject = async ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
+
+	const id = req.query.id as string
+
+	try {
+
+		await db.connect()
+		await Project.findByIdAndDelete( id )
+		await db.disconnect()
+
+		return res.status( 201 ).json({
+			msg: 'Producto eliminado'
 		})
 	} catch ( error ) {
 		
