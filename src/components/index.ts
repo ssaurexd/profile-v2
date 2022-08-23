@@ -16,5 +16,4 @@ export * from './ui/ToggleTheme'
 export * from './ui/link/ScrollLink'
 
 /* admin */
-export * from './admin/AdminNav'
 export * from './admin/AdminSidebar'

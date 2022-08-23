@@ -75,10 +75,9 @@ const deleteImg = async ( req: NextApiRequest, res: NextApiResponse<Data> ) => {
 		const public_id = imgUrl.split( '/' ).at( -1 )?.split( '.' )[0] as string
 		console.log("🚀 ~ file: upload.ts ~ line 76 ~ deleteImg ~ public_id", public_id)
 
-		await CloudinaryV2.uploader.destroy( public_id, ( err, resp ) => {
-		console.log("🚀 ~ file: upload.ts ~ line 79 ~ awaitCloudinaryV2.uploader.destroy ~ resp", resp)
-		console.log("🚀 ~ file: upload.ts ~ line 79 ~ awaitCloudinaryV2.uploader.destroy ~ err", err)
-
+		await CloudinaryV2.uploader.destroy( public_id, {
+			type: 'upload',
+			resource_type: 'image'
 		})
 
 		return res.status( 200 ).json({
