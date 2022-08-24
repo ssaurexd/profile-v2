@@ -30,7 +30,7 @@ export const MyDropZone: FC<Props> = ({ onDrop, hasError, errorMsg, imageUrl, ..
 								minHeight: '100px',
 								width: '100%',
 								border: theme => `2px dashed ${ 
-									isDragActive ? theme.palette.text.secondary : theme.palette.action.focus
+									isDragActive ? theme.palette.text.secondary : hasError ? theme.palette.error.main : theme.palette.action.focus
 								}`,
 								borderRadius: 1,
 								mt: 5,
@@ -60,7 +60,7 @@ export const MyDropZone: FC<Props> = ({ onDrop, hasError, errorMsg, imageUrl, ..
 						<Box
 							sx={{
 								width: '100%',
-								height: '120px',
+								height: imageUrl ? '120px' : 'auto',
 								position: 'relative',
 								my: 2,
 								borderRadius: 2,
