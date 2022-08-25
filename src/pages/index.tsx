@@ -46,14 +46,15 @@ const Home: NextPage<Props> = ({ lastesProjects }) => {
     )
 }
 
-export const getStaticProps: GetStaticProps = async ( ) => {
+export const getStaticProps: GetStaticProps = async ({  }) => {
 
     const lastesProjects = await projectDB.getLastThreeProjectes()
 
     return {
         props: {
             lastesProjects
-        }
+        },
+        revalidate: 60 * 60 * 24 //24h
     }
 }
 

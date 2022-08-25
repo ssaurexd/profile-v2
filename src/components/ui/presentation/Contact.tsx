@@ -34,7 +34,7 @@ export const Contact: FC<Props> = () => {
 					>
 						Proyecto en mente?
 					</Typography>
-					<Button variant='outlined' target='_blank' href='https://www.linkedin.com/in/aure-sand-49a77b1b7/' >Contactame</Button>
+					<Button variant='outlined' target='_blank' href='https://www.linkedin.com/in/aure-sand-49a77b1b7/' rel='noreferrer noopener'>Contactame</Button>
 			</Container>
 		</Box>
 	)

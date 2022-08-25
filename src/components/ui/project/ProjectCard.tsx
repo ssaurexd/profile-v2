@@ -18,7 +18,7 @@ interface ExpandMoreProps extends IconButtonProps {
 }
 
 const ExpandMore = styled(( props: ExpandMoreProps ) => {
-	const { expand, ...other } = props
+	const { expand: _expand, ...other } = props
 	return <IconButton {...other} />
 })(({ theme, expand }) => ({
 	transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
@@ -55,12 +55,12 @@ export const ProjectCard: FC<Props> = ({ project: { description, image, title, g
 			</CardContent>
 			<CardActions disableSpacing sx={{ color: theme => theme.palette.text.secondary }}>
 				{ githubUrl &&
-					<IconButton color='inherit' href={ githubUrl } target='_blank' >
+					<IconButton color='inherit' href={ githubUrl } target='_blank' rel='noreferrer noopener'>
 						<GitHubIcon color='inherit' />
 					</IconButton>
 				}
 				{ viewUrl && 
-					<IconButton color='inherit' href={ viewUrl } target='_blank' >
+					<IconButton color='inherit' href={ viewUrl } target='_blank' rel='noreferrer noopener' >
 						<OpenInNewIcon color='inherit'  />
 					</IconButton>
 				}

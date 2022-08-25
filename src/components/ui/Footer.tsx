@@ -91,6 +91,7 @@ const CustomSocial: FC<LinkProps> = ({ href, icon }) => {
 			}}
 			href={ href }
 			target='_blank'
+			rel='noreferrer noopener'
 		>
 			<Typography color='inherit' display='flex' alignItems='center' >
 				{ icon }

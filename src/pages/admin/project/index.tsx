@@ -19,7 +19,7 @@ const columns: GridColDef[] = [
 		renderCell({ value }) {
 
 			return (
-				<Link href={`/admin/project/${ value }`} passHref >
+				<Link href={`/admin/project/${ value }`} passHref  rel='noreferrer noopener'>
 					<IconButton color='inherit'>
 						<EditIcon color='inherit' />
 					</IconButton>

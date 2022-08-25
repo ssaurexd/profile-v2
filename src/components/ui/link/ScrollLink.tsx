@@ -46,6 +46,7 @@ export const ScrollLink: FC<Props> = ({ to, label, isMobile = false, onActiveLin
 			ignoreCancelEvents={ false }
 			onClick={ onChangeLink }
 			onSetActive={ () => setPage( to ) }
+			rel='noreferrer noopener'
 		>
 			<Typography color='textSecondary'  >
 				{ label }

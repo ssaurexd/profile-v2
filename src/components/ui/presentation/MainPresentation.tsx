@@ -67,7 +67,9 @@ export const MainPresentation: FC<Props> = () => {
 									mb: { xs: 5, md: 0 }
 								}}
 							>
-								<Button href='https://www.linkedin.com/in/aure-sand-49a77b1b7/' variant='outlined' color='primary' size='large' target='_blank'>
+								<Button href='https://www.linkedin.com/in/aure-sand-49a77b1b7/' variant='outlined' color='primary' size='large' target='_blank'
+									rel='noreferrer noopener'
+								>
 									Contactame
 								</Button>
 							</Box>

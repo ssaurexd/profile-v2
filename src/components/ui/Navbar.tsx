@@ -77,7 +77,7 @@ export const Navbar: FC<Props> = ( ) => {
                 <Container>
                     <Toolbar disableGutters component='nav'>
 						{/* Desktop */}
-                        <Link href='/' passHref>
+                        <Link href='/' passHref rel='noreferrer noopener'>
                             <Typography
                                 variant='h6'
                                 noWrap
@@ -133,7 +133,7 @@ export const Navbar: FC<Props> = ( ) => {
                                 <MenuIcon />
                             </IconButton>
                         </Box>
-                        <Link href='/' passHref>
+                        <Link href='/' passHref rel='noreferrer noopener'>
                             <Typography
                                 variant='h5'
                                 noWrap
@@ -166,6 +166,7 @@ export const Navbar: FC<Props> = ( ) => {
 								sx={ socialStyle }
 								href='https://github.com/ssaurexd'
 								target='_blank'
+                                rel='noreferrer noopener'
 							>
 								<Typography color='inherit' display='flex' alignItems='center' >
 									<GitHubIcon color='inherit' />
@@ -175,6 +176,7 @@ export const Navbar: FC<Props> = ( ) => {
 								sx={ socialStyle }
 								href='https://www.linkedin.com/in/aure-sand-49a77b1b7/'
 								target='_blank'
+                                rel='noreferrer noopener'
 							>
 								<Typography color='inherit' display='flex' alignItems='center' >
 									<LinkedInIcon color='inherit' sx={{ fontSize: '1.8rem' }} />
