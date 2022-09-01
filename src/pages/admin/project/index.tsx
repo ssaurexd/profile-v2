@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
 import { getSession } from 'next-auth/react'
 import { Box, IconButton, Paper } from '@mui/material'
-import { DataGrid, GridColDef, GridRowsProp } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridRowsProp, GridToolbar } from '@mui/x-data-grid'
 import EditIcon from '@mui/icons-material/Edit'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -25,7 +25,8 @@ const columns: GridColDef[] = [
 					</IconButton>
 				</Link>
 			)
-		}
+		},
+		filterable: false
 	},
 	{ field: '_id', headerName: 'ID', width: 200 },
 	{ 
@@ -118,6 +119,9 @@ const ListProjectsPage: NextPage<Props> = ({}) => {
 						'& .MuiDataGrid-columnHeader': {
 							color: theme => theme.palette.text.primary
 						}
+					}}
+					components={{
+						Toolbar: GridToolbar
 					}}
 				/>
 			</Paper>
