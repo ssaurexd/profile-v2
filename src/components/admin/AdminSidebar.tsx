@@ -54,7 +54,7 @@ export const AdminSidebar: FC<Props> = ({ open, handleDrawerClose, handleDrawerO
 	}
 
 	return (
-		<Drawer variant='permanent' open={ open }>
+		<Drawer variant='permanent' open={ open } >
 			<DrawerHeader
 				sx={{
 					display: 'flex',
@@ -203,7 +203,7 @@ const CustomListItemButton: FC<PropsCustomListItemButton> = ({ icon, label, to, 
 			sx={{
 				py: 0,
 				minHeight: 32,
-				color: theme => theme.palette.text.secondary,
+				color: theme => to === router.pathname ? theme.palette.primary.main : theme.palette.text.secondary,
 				borderRight: ({ palette }) => to === router.pathname ? `2px solid ${ palette.primary.main }` : 'none'
 			}}
 		>

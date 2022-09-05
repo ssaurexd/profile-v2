@@ -1,19 +1,22 @@
 import { useCallback, useState } from 'react'
 import { GetServerSideProps, NextPage } from 'next'
+import dynamic from 'next/dynamic'
 import { getSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
 import * as Yup from 'yup'
 import { LoadingButton } from '@mui/lab'
-import { Box, Paper, TextField } from '@mui/material'
+import { Box, Paper, TextField, Typography } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
 import { Formik } from 'formik'
 import { VariantType, useSnackbar } from 'notistack'
 /*  */
 import { IProject, IUser } from '../../../interfaces'
 import { errorsMessages } from '../../../helpers'
+import { api } from '../../../config'
 /*  */
 import { AdminLayout } from '../../../layouts'
-import { api } from '../../../config'
 import { MyDropZone } from '../../../components'
+const RichEditor = dynamic( () => import( '../../../components/ui/editor/RichEditor' ), { ssr: false } )
 
 
 interface Props {
@@ -84,111 +87,122 @@ const ProjectIDPage: NextPage<Props> = ({}) => {
 	
 	return (
 		<AdminLayout>
-			<Paper elevation={ 0 } sx={{ width: '100%', p: 3 }} >
-				<Formik
-					initialValues={{ ...project }}
-					validationSchema={ Yup.object({
-						title: Yup.string().trim()
-						  	.required( errorsMessages['FIELD_REQUIRED'] ),
-						description: Yup.string().trim()
-							.required( errorsMessages['FIELD_REQUIRED'] ),
-						image: Yup.string().trim()
-							.required( errorsMessages['FIELD_REQUIRED'] )
-					})}
-					onSubmit={ ( values ) => onSubmit( values ) }
-				>
-					{({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue }) => (
-						<Box component='form' onSubmit={ handleSubmit } >
-							<Box 
-								sx={{
-									display: 'grid',
-									gridTemplateColumns: ' repeat( auto-fit, minmax( 400px, 1fr ) ) ',
-									gap: 5
-								}}
-							>
-								<TextField 
-									label='ID'
-									disabled
-									fullWidth
-									margin='none'
-									defaultValue={ values._id }
-								/>
-								<TextField 
-									label='Fecha'
-									disabled
-									fullWidth
-									margin='none'
-									defaultValue={ new Date( `${ values.createdAt }` ).toLocaleString() }
-								/>
-								<TextField 
-									label='Titulo'
-									name='title'
-									fullWidth
-									margin='none'
-									error={ !!errors.title }
-									helperText={ !!touched.title && errors.title }
-									value={ values.title }
-									onBlur={ handleBlur }
-									onChange={ handleChange }
-								/>
-								<TextField 
-									label='Github'
-									name='githubUrl'
-									fullWidth
-									margin='none'
-									error={ !!errors.githubUrl }
-									helperText={ !!touched.githubUrl && errors.githubUrl }
-									value={ values.githubUrl }
-									onBlur={ handleBlur }
-									onChange={ handleChange }
-								/>
-								<TextField 
-									label='Page'
-									name='viewUrl'
-									fullWidth
-									margin='none'
-									error={ !!errors.viewUrl }
-									helperText={ !!touched.viewUrl && errors.viewUrl }
-									value={ values.viewUrl }
-									onBlur={ handleBlur }
-									onChange={ handleChange }
-								/>
-							</Box>
-							<TextField 
-								sx={{ mt: 5 }}
-								label='Descripción'
-								name='description'
-								fullWidth
-								margin='none'
-								multiline
-								error={ !!errors.description }
-								helperText={ !!touched.description && errors.description }
-								value={ values.description }
-								onBlur={ handleBlur }
-								onChange={ handleChange }
-							/>
-							<MyDropZone 
-								imageUrl={ values.image }
-								hasError={ !!errors.image }
-								errorMsg={ errors.image } 
-								onDrop={ ( files ) => onDrop( files, setFieldValue, values.image ) } 
-							/>
-							<Box >
-								<LoadingButton
-									variant='contained'
-									color='primary'
-									disableElevation
-									type='submit'
-									fullWidth
-									loading={ isSubmitting }
-								>
-									Crear proyecto
-								</LoadingButton>
-							</Box>
-						</Box>
-					)}
-				</Formik>
-			</Paper>
+			<Formik
+				initialValues={{ ...project }}
+				validationSchema={ Yup.object({
+					title: Yup.string().trim()
+						.required( errorsMessages['FIELD_REQUIRED'] ),
+					description: Yup.string().trim()
+						.required( errorsMessages['FIELD_REQUIRED'] ),
+					image: Yup.string().trim()
+						.required( errorsMessages['FIELD_REQUIRED'] )
+				})}
+				onSubmit={ ( values ) => onSubmit( values ) }
+			>
+				{({ values, errors, touched, handleBlur, handleChange, handleSubmit, setFieldValue, setFieldTouched }) => (
+					<Box component='form' onSubmit={ handleSubmit } >
+						<Grid container spacing={ 2 } >
+							<Grid container xs={ 12 } md={ 8 } >
+								<Grid xs={ 12 }>
+									<Paper elevation={ 0 } 
+										sx={{ width: '100%', p: 3 }} 
+									>
+										<TextField 
+											label='Titulo'
+											name='title'
+											fullWidth
+											margin='normal'
+											error={ !!touched.title && !!errors.title }
+											helperText={ !!touched.title && errors.title }
+											value={ values.title }
+											onBlur={ handleBlur }
+											onChange={ handleChange }
+										/>
+										<TextField 
+											label='Github'
+											name='githubUrl'
+											fullWidth
+											margin='normal'
+											value={ values.githubUrl }
+											onBlur={ handleBlur }
+											onChange={ handleChange }
+										/>
+										<TextField 
+											label='Page'
+											name='viewUrl'
+											fullWidth
+											margin='normal'
+											value={ values.viewUrl }
+											onBlur={ handleBlur }
+											onChange={ handleChange }
+										/>
+									</Paper>
+								</Grid>
+								<Grid xs={ 12 }>
+									<Paper elevation={ 0 } sx={{ width: '100%', p: 3 }} >
+										<RichEditor 
+											label='Descripción: '
+											name='description'
+											value={ values.description }
+											onChage={ value => setFieldValue( 'description', value, true ) }
+											onTouched={ () => setFieldTouched( 'description' ) }
+											error={ !!touched.description && !!errors.description }
+											errorText={ !!touched.description && errors.description }
+										/>
+									</Paper>
+								</Grid>
+								<Grid xs={ 12 }>
+									<Paper elevation={ 0 } sx={{ width: '100%', p: 3 }} >
+										<Typography my={ 1 } variant='body2' >Imagen: </Typography>
+										<MyDropZone 
+											imageUrl={ values.image }
+											hasError={ !!errors.image }
+											errorMsg={ errors.image } 
+											onDrop={ ( files ) => onDrop( files, setFieldValue, values.image ) } 
+										/>
+									</Paper>
+								</Grid>
+							</Grid>
+
+							{/*  */}
+							<Grid xs={ 12 } md={ 4 } >
+								<Grid >
+									<Paper elevation={ 0 } sx={{ width: '100%', p: 3 }} >
+										<TextField 
+											label='ID'
+											disabled
+											fullWidth
+											margin='normal'
+											defaultValue={ values._id }
+										/>
+										<TextField 
+											label='Fecha'
+											disabled
+											fullWidth
+											margin='normal'
+											defaultValue={ new Date( `${ values.createdAt }` ).toLocaleString() }
+										/>
+									</Paper>
+								</Grid>
+								<Grid>
+									<Paper elevation={ 0 } sx={{ width: '100%', p: 3 }} >
+										<LoadingButton
+											variant='contained'
+											color='primary'
+											disableElevation
+											type='submit'
+											fullWidth
+											loading={ isSubmitting }
+										>
+											Guardar proyecto
+										</LoadingButton>
+									</Paper>
+								</Grid>
+							</Grid>
+						</Grid>
+					</Box>
+				)}
+			</Formik>
 		</AdminLayout>
 	)
 }

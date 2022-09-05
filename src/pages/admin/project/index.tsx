@@ -66,7 +66,8 @@ const columns: GridColDef[] = [
 			const date = new Date( value )
 
 			return date.toLocaleString()
-		}
+		},
+		type: 'date',
 	}
 ]
 interface Props {
@@ -78,9 +79,9 @@ const ListProjectsPage: NextPage<Props> = ({}) => {
 	const [ rows, setRows ] = useState<GridRowsProp>( [] )
 
 	/* functions */
-	const getData = async ( signal: AbortSignal ) => {
+	const getData = async ( ) => {
 
-		const { data: { data } } = await api.get<{ data: IProject[] }>( '/project', { signal } )
+		const { data: { data } } = await api.get<{ data: IProject[] }>( '/project' )
 		
 		setIsLoading( false )
 		setRows([
@@ -95,11 +96,7 @@ const ListProjectsPage: NextPage<Props> = ({}) => {
 	/* effects */
 	useEffect( () => { 
 
-		const controller = new AbortController()
-
-		getData( controller.signal ) 
-
-		return () => controller.abort()
+		getData( ) 
 	}, [ ])
 
 	return (
@@ -113,6 +110,7 @@ const ListProjectsPage: NextPage<Props> = ({}) => {
 					autoHeight
 					rowsPerPageOptions={[ 15 ]}
 					disableSelectionOnClick
+					density='comfortable'
 					experimentalFeatures={{ newEditingApi: true }}
 					sx={{
 						color: theme => theme.palette.text.secondary,

@@ -45,6 +45,18 @@ export const ThemeLayout: FC<Props> = ({ children }) => {
 						'&::-webkit-scrollbar': {
 							width: '.5rem'
 						}
+					},
+					/* CKEditor */
+					':root' : {
+						'--ck-custom-background-hover': theme.palette.action.focus,
+						'--ck-custom-background': theme.palette.background.paper,
+						'--ck-custom-foreground': theme.palette.text.primary,
+						'--ck-custom-border': theme.palette.divider,
+						'--ck-color-base-foreground': 'var(--ck-custom-foreground) !important',
+						'--ck-color-base-background': 'var(--ck-custom-background) !important',
+						'--ck-color-base-border': 'var(--ck-custom-border) !important',
+						'--ck-color-base-text': 'var( --ck-custom-foreground ) !important',
+						'--ck-color-button-default-hover-background': 'var(--ck-custom-background-hover) !important'
 					}
 				}}
 			/>

@@ -75,9 +75,7 @@ export const ProjectCard: FC<Props> = ({ project: { description, image, title, g
 			</CardActions>
 			<Collapse in={ expanded } timeout='auto' unmountOnExit >
 				<CardContent>
-					<Typography paragraph fontSize='large' color='textSecondary'>
-						{ description }
-					</Typography>
+					<Typography component='div' fontSize='large' color='textSecondary' dangerouslySetInnerHTML={{ __html: description }} />
 				</CardContent>
 			</Collapse>
 		</Card>

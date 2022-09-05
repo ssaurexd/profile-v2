@@ -14,6 +14,7 @@ export * from './ui/Footer'
 export * from './ui/MyDropZone'
 export * from './ui/ToggleTheme'
 export * from './ui/link/ScrollLink'
+export * as RichEditor from './ui/editor/RichEditor'
 
 /* admin */
 export * from './admin/AdminSidebar'
