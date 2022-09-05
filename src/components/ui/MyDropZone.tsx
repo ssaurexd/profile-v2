@@ -33,7 +33,6 @@ export const MyDropZone: FC<Props> = ({ onDrop, hasError, errorMsg, imageUrl, ..
 									isDragActive ? theme.palette.text.secondary : hasError ? theme.palette.error.main : theme.palette.action.focus
 								}`,
 								borderRadius: 1,
-								mt: 5,
 								display: 'flex',
 								justifyContent: 'center',
 								alignItems: 'center',
