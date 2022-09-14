@@ -56,6 +56,7 @@ export const MainPresentation: FC<Props> = () => {
 								component='h1' 
 								variant='h2' 
 								marginBottom={{ xs: 1, md: 2 }}
+								data-testid='name'
 							>
 								Aureliano Torres Sandoval
 							</Typography>
