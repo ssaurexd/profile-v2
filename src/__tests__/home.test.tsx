@@ -2,10 +2,9 @@ import { render, screen } from '@testing-library/react'
 import { MainPresentation } from '../components/'
 
 
-describe( 'Home', () => {
+describe( '<MainPresentation />', () => {
 
-
-	it( '<MainPresentation />', () => {
+	it( 'SEO: Deberia ser H1 y tener ni nombre', () => {
 
 		render( <MainPresentation /> )
 
